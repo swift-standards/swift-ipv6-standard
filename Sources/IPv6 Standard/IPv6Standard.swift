@@ -27,9 +27,9 @@
 // - RFC 6164: IPv6 Addressing for Point-to-Point Links
 // - RFC 8200: IPv6 Specification (full protocol)
 
+@_exported import RFC_4007
 @_exported import RFC_4291
 @_exported import RFC_5952
-@_exported import RFC_4007
 
 /// IPv6 Standard namespace
 ///

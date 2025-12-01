@@ -11,6 +11,7 @@
 // ===----------------------------------------------------------------------===//
 
 import Testing
+
 @testable import IPv6_Standard
 
 @Suite("IPv6 Standard: Integration Tests")
