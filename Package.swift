@@ -26,8 +26,8 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/swift-standards/swift-rfc-4291", from: "0.2.0"),
-        .package(url: "https://github.com/swift-standards/swift-rfc-5952", from: "0.1.3"),
-        .package(url: "https://github.com/swift-standards/swift-rfc-4007", from: "0.1.3"),
+        .package(url: "https://github.com/swift-standards/swift-rfc-5952", from: "0.1.5"),
+        .package(url: "https://github.com/swift-standards/swift-rfc-4007", from: "0.1.6"),
     ],
     targets: [
         .target(
