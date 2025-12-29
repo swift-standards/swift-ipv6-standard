@@ -74,10 +74,10 @@ struct IPv6StandardTests {
         let multicast = IPv6.Address(0xff02, 0, 0, 0, 0, 0, 0, 1)
         let global = IPv6.Address(0x2001, 0x0db8, 0, 0, 0, 0, 0, 1)
 
-        #expect(loopback.isLoopback == true)
-        #expect(linkLocal.isLinkLocal == true)
-        #expect(multicast.isMulticast == true)
-        #expect(global.isGlobalUnicast == true)
+        #expect(loopback.is.loopback == true)
+        #expect(linkLocal.is.linkLocal == true)
+        #expect(multicast.is.multicast == true)
+        #expect(global.is.globalUnicast == true)
     }
 
     // MARK: - Full Round-Trip
@@ -88,7 +88,7 @@ struct IPv6StandardTests {
         let address = IPv6.Address(0xfe80, 0, 0, 0, 0x0200, 0x5eff, 0xfe00, 0x0001)
 
         // Check properties (RFC 4291)
-        #expect(address.isLinkLocal == true)
+        #expect(address.is.linkLocal == true)
 
         // Canonical text (RFC 5952)
         let canonical = String(address)
