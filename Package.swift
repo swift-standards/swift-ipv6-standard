@@ -19,25 +19,21 @@ let package = Package(
         .macOS(.v26),
         .iOS(.v26),
         .tvOS(.v26),
-        .watchOS(.v26),
+        .watchOS(.v26)
     ],
     products: [
-        .library(name: .ipv6Standard, targets: [.ipv6Standard])
+        .library(name: "IPv6 Standard", targets: ["IPv6 Standard"])
     ],
     dependencies: [
         .package(path: "../swift-rfc-4291"),
         .package(path: "../swift-rfc-5952"),
-        .package(path: "../swift-rfc-4007"),
+        .package(path: "../swift-rfc-4007")
     ],
     targets: [
         .target(
-            name: .ipv6Standard,
+            name: "IPv6 Standard",
             dependencies: [.rfc4291, .rfc5952, .rfc4007]
-        ),
-        .testTarget(
-            name: .ipv6Standard.tests,
-            dependencies: [.ipv6Standard]
-        ),
+        )
     ],
     swiftLanguageModes: [.v6]
 )
