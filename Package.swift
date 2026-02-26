@@ -35,7 +35,13 @@ let package = Package(
         .target(
             name: "IPv6 Standard",
             dependencies: [.rfc4291, .rfc5952, .rfc4007]
-        )
+        ),
+        .testTarget(
+            name: "IPv6 Standard Tests",
+            dependencies: [
+                "IPv6 Standard",
+            ]
+        ),
     ],
     swiftLanguageModes: [.v6]
 )
@@ -46,6 +52,7 @@ for target in package.targets where ![.system, .binary, .plugin, .macro].contain
         .enableUpcomingFeature("ExistentialAny"),
         .enableUpcomingFeature("InternalImportsByDefault"),
         .enableUpcomingFeature("MemberImportVisibility"),
+        .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
         .enableExperimentalFeature("Lifetimes"),
         .enableExperimentalFeature("SuppressedAssociatedTypes"),
         .enableExperimentalFeature("SuppressedAssociatedTypesWithDefaults"),
