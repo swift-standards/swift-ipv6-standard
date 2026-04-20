@@ -19,22 +19,22 @@ struct IPv6StandardTests {
 
     // MARK: - Basic Integration
 
-    @Test("Can access RFC 4291 types")
-    func rfc4291Integration() throws {
+    @Test
+    func `Can access RFC 4291 types`() throws {
         let address = IPv6.Address(0x2001, 0x0db8, 0, 0, 0, 0, 0, 1)
         #expect(address.segments.0 == 0x2001)
         #expect(address.segments.1 == 0x0db8)
     }
 
-    @Test("Can access RFC 5952 canonical representation")
-    func rfc5952Integration() throws {
+    @Test
+    func `Can access RFC 5952 canonical representation`() throws {
         let address = IPv6.Address(0x2001, 0x0db8, 0, 0, 0, 0, 0, 1)
         let text = String(address)
         #expect(text == "2001:db8::1")
     }
 
-    @Test("Can access RFC 4007 scoped addresses")
-    func rfc4007Integration() throws {
+    @Test
+    func `Can access RFC 4007 scoped addresses`() throws {
         let linkLocal = IPv6.Address(0xfe80, 0, 0, 0, 0, 0, 0, 1)
         let scoped = RFC_4007.IPv6.ScopedAddress(address: linkLocal, zone: "eth0")
 
@@ -44,22 +44,22 @@ struct IPv6StandardTests {
 
     // MARK: - Well-Known Addresses
 
-    @Test("Loopback address canonical form")
-    func loopbackCanonical() throws {
+    @Test
+    func `Loopback address canonical form`() throws {
         let loopback = IPv6.Address.loopback
         #expect(String(loopback) == "::1")
     }
 
-    @Test("Unspecified address canonical form")
-    func unspecifiedCanonical() throws {
+    @Test
+    func `Unspecified address canonical form`() throws {
         let unspecified = IPv6.Address.unspecified
         #expect(String(unspecified) == "::")
     }
 
     // MARK: - Type Aliases
 
-    @Test("IPv6 typealias works")
-    func typeAlias() throws {
+    @Test
+    func `IPv6 typealias works`() throws {
         // Should be able to use IPv6 instead of RFC_4291.IPv6
         let address: IPv6.Address = .loopback
         #expect(address == RFC_4291.IPv6.Address.loopback)
@@ -67,8 +67,8 @@ struct IPv6StandardTests {
 
     // MARK: - Address Properties
 
-    @Test("Address type detection")
-    func addressTypes() throws {
+    @Test
+    func `Address type detection`() throws {
         let loopback = IPv6.Address.loopback
         let linkLocal = IPv6.Address(0xfe80, 0, 0, 0, 0, 0, 0, 1)
         let multicast = IPv6.Address(0xff02, 0, 0, 0, 0, 0, 0, 1)
@@ -82,8 +82,8 @@ struct IPv6StandardTests {
 
     // MARK: - Full Round-Trip
 
-    @Test("Full IPv6 workflow")
-    func fullWorkflow() throws {
+    @Test
+    func `Full IPv6 workflow`() throws {
         // Create address (RFC 4291)
         let address = IPv6.Address(0xfe80, 0, 0, 0, 0x0200, 0x5eff, 0xfe00, 0x0001)
 
