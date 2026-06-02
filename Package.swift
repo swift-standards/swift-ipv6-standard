@@ -27,9 +27,9 @@ let package = Package(
         .library(name: "IPv6 Standard", targets: ["IPv6 Standard"])
     ],
     dependencies: [
-        .package(path: "../../swift-ietf/swift-rfc-4291"),
-        .package(path: "../../swift-ietf/swift-rfc-5952"),
-        .package(path: "../../swift-ietf/swift-rfc-4007")
+        .package(url: "https://github.com/swift-ietf/swift-rfc-4291.git", branch: "main"),
+        .package(url: "https://github.com/swift-ietf/swift-rfc-5952.git", branch: "main"),
+        .package(url: "https://github.com/swift-ietf/swift-rfc-4007.git", branch: "main")
     ],
     targets: [
         .target(
