@@ -1,6 +1,6 @@
 # .github/metadata.yaml
 # Triaged by AI-assisted bulk pass (2026-04-29).
-description: "IPv6 meta-package combining RFC 4291, 4007, 5952, and 8200 in Swift."
+description: "IPv6 meta-package composing RFC 4291, 4007, and 5952 for Swift."
 topics:
   - standards
   - ipv6
