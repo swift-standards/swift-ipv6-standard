@@ -14,8 +14,9 @@ import Testing
 
 @testable import IPv6_Standard
 
-@Suite("IPv6 Standard: Integration Tests")
-struct IPv6StandardTests {
+extension IPv6Standard {
+    @Suite("IPv6 Standard: Integration Tests")
+    struct Test {
 
     // MARK: - Basic Integration
 
@@ -99,5 +100,6 @@ struct IPv6StandardTests {
         #expect(scoped.requiresZone == true)
         #expect(scoped.isProperlyScoped == true)
         #expect(String(scoped) == "fe80::200:5eff:fe00:1%eth0")
+    }
     }
 }
