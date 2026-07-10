@@ -18,88 +18,88 @@ extension IPv6Standard {
     @Suite("IPv6 Standard: Integration Tests")
     struct Test {
 
-    // MARK: - Basic Integration
+        // MARK: - Basic Integration
 
-    @Test
-    func `Can access RFC 4291 types`() throws {
-        let address = IPv6.Address(0x2001, 0x0db8, 0, 0, 0, 0, 0, 1)
-        #expect(address.segments.0 == 0x2001)
-        #expect(address.segments.1 == 0x0db8)
-    }
+        @Test
+        func `Can access RFC 4291 types`() throws {
+            let address = IPv6.Address(0x2001, 0x0db8, 0, 0, 0, 0, 0, 1)
+            #expect(address.segments.0 == 0x2001)
+            #expect(address.segments.1 == 0x0db8)
+        }
 
-    @Test
-    func `Can access RFC 5952 canonical representation`() throws {
-        let address = IPv6.Address(0x2001, 0x0db8, 0, 0, 0, 0, 0, 1)
-        let text = String(address)
-        #expect(text == "2001:db8::1")
-    }
+        @Test
+        func `Can access RFC 5952 canonical representation`() throws {
+            let address = IPv6.Address(0x2001, 0x0db8, 0, 0, 0, 0, 0, 1)
+            let text = String(address)
+            #expect(text == "2001:db8::1")
+        }
 
-    @Test
-    func `Can access RFC 4007 scoped addresses`() throws {
-        let linkLocal = IPv6.Address(0xfe80, 0, 0, 0, 0, 0, 0, 1)
-        let scoped = RFC_4007.IPv6.ScopedAddress(address: linkLocal, zone: "eth0")
+        @Test
+        func `Can access RFC 4007 scoped addresses`() throws {
+            let linkLocal = IPv6.Address(0xfe80, 0, 0, 0, 0, 0, 0, 1)
+            let scoped = RFC_4007.IPv6.ScopedAddress(address: linkLocal, zone: "eth0")
 
-        #expect(String(scoped) == "fe80::1%eth0")
-        #expect(scoped.requiresZone == true)
-    }
+            #expect(String(scoped) == "fe80::1%eth0")
+            #expect(scoped.requiresZone == true)
+        }
 
-    // MARK: - Well-Known Addresses
+        // MARK: - Well-Known Addresses
 
-    @Test
-    func `Loopback address canonical form`() throws {
-        let loopback = IPv6.Address.loopback
-        #expect(String(loopback) == "::1")
-    }
+        @Test
+        func `Loopback address canonical form`() throws {
+            let loopback = IPv6.Address.loopback
+            #expect(String(loopback) == "::1")
+        }
 
-    @Test
-    func `Unspecified address canonical form`() throws {
-        let unspecified = IPv6.Address.unspecified
-        #expect(String(unspecified) == "::")
-    }
+        @Test
+        func `Unspecified address canonical form`() throws {
+            let unspecified = IPv6.Address.unspecified
+            #expect(String(unspecified) == "::")
+        }
 
-    // MARK: - Type Aliases
+        // MARK: - Type Aliases
 
-    @Test
-    func `IPv6 typealias works`() throws {
-        // Should be able to use IPv6 instead of RFC_4291.IPv6
-        let address: IPv6.Address = .loopback
-        #expect(address == RFC_4291.IPv6.Address.loopback)
-    }
+        @Test
+        func `IPv6 typealias works`() throws {
+            // Should be able to use IPv6 instead of RFC_4291.IPv6
+            let address: IPv6.Address = .loopback
+            #expect(address == RFC_4291.IPv6.Address.loopback)
+        }
 
-    // MARK: - Address Properties
+        // MARK: - Address Properties
 
-    @Test
-    func `Address type detection`() throws {
-        let loopback = IPv6.Address.loopback
-        let linkLocal = IPv6.Address(0xfe80, 0, 0, 0, 0, 0, 0, 1)
-        let multicast = IPv6.Address(0xff02, 0, 0, 0, 0, 0, 0, 1)
-        let global = IPv6.Address(0x2001, 0x0db8, 0, 0, 0, 0, 0, 1)
+        @Test
+        func `Address type detection`() throws {
+            let loopback = IPv6.Address.loopback
+            let linkLocal = IPv6.Address(0xfe80, 0, 0, 0, 0, 0, 0, 1)
+            let multicast = IPv6.Address(0xff02, 0, 0, 0, 0, 0, 0, 1)
+            let global = IPv6.Address(0x2001, 0x0db8, 0, 0, 0, 0, 0, 1)
 
-        #expect(loopback.is.loopback == true)
-        #expect(linkLocal.is.linkLocal == true)
-        #expect(multicast.is.multicast == true)
-        #expect(global.is.globalUnicast == true)
-    }
+            #expect(loopback.is.loopback == true)
+            #expect(linkLocal.is.linkLocal == true)
+            #expect(multicast.is.multicast == true)
+            #expect(global.is.globalUnicast == true)
+        }
 
-    // MARK: - Full Round-Trip
+        // MARK: - Full Round-Trip
 
-    @Test
-    func `Full IPv6 workflow`() throws {
-        // Create address (RFC 4291)
-        let address = IPv6.Address(0xfe80, 0, 0, 0, 0x0200, 0x5eff, 0xfe00, 0x0001)
+        @Test
+        func `Full IPv6 workflow`() throws {
+            // Create address (RFC 4291)
+            let address = IPv6.Address(0xfe80, 0, 0, 0, 0x0200, 0x5eff, 0xfe00, 0x0001)
 
-        // Check properties (RFC 4291)
-        #expect(address.is.linkLocal == true)
+            // Check properties (RFC 4291)
+            #expect(address.is.linkLocal == true)
 
-        // Canonical text (RFC 5952)
-        let canonical = String(address)
-        #expect(canonical == "fe80::200:5eff:fe00:1")
+            // Canonical text (RFC 5952)
+            let canonical = String(address)
+            #expect(canonical == "fe80::200:5eff:fe00:1")
 
-        // Scoped address (RFC 4007)
-        let scoped = RFC_4007.IPv6.ScopedAddress(address: address, zone: "eth0")
-        #expect(scoped.requiresZone == true)
-        #expect(scoped.isProperlyScoped == true)
-        #expect(String(scoped) == "fe80::200:5eff:fe00:1%eth0")
-    }
+            // Scoped address (RFC 4007)
+            let scoped = RFC_4007.IPv6.ScopedAddress(address: address, zone: "eth0")
+            #expect(scoped.requiresZone == true)
+            #expect(scoped.isProperlyScoped == true)
+            #expect(String(scoped) == "fe80::200:5eff:fe00:1%eth0")
+        }
     }
 }
