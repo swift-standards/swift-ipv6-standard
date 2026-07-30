@@ -5,7 +5,12 @@
     @TitleHeading("Swift Standards")
 }
 
-IPv6 Standard — umbrella catalog placeholder. Replace this line with a one-sentence
-description of what the package provides.
+A unified `IPv6` standard for Swift — composes RFC 4291 addressing, RFC 5952 text representation, and RFC 4007 scoped-address definitions into a single namespace, with no Foundation dependency.
 
 ## Topics
+
+### Re-exported Modules
+
+- ``RFC_4291``
+- ``RFC_5952``
+- ``RFC_4007``
