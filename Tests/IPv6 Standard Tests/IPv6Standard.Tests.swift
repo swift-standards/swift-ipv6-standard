@@ -1,15 +1,3 @@
-// ===----------------------------------------------------------------------===//
-//
-// Copyright (c) 2025 Coen ten Thije Boonkkamp
-// Licensed under Apache License v2.0
-//
-// See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of project contributors
-//
-// SPDX-License-Identifier: Apache-2.0
-//
-// ===----------------------------------------------------------------------===//
-
 import Testing
 
 @testable import IPv6_Standard
@@ -17,8 +5,6 @@ import Testing
 extension IPv6Standard {
     @Suite("IPv6 Standard: Integration Tests")
     struct Test {
-
-        // MARK: - Basic Integration
 
         @Test
         func `Can access RFC 4291 types`() throws {
@@ -43,8 +29,6 @@ extension IPv6Standard {
             #expect(scoped.requiresZone == true)
         }
 
-        // MARK: - Well-Known Addresses
-
         @Test
         func `Loopback address canonical form`() throws {
             let loopback = IPv6.Address.loopback
@@ -57,16 +41,12 @@ extension IPv6Standard {
             #expect(String(unspecified) == "::")
         }
 
-        // MARK: - Type Aliases
-
         @Test
         func `IPv6 typealias works`() throws {
-            // Should be able to use IPv6 instead of RFC_4291.IPv6
+
             let address: IPv6.Address = .loopback
             #expect(address == RFC_4291.IPv6.Address.loopback)
         }
-
-        // MARK: - Address Properties
 
         @Test
         func `Address type detection`() throws {
@@ -81,21 +61,16 @@ extension IPv6Standard {
             #expect(global.is.globalUnicast == true)
         }
 
-        // MARK: - Full Round-Trip
-
         @Test
         func `Full IPv6 workflow`() throws {
-            // Create address (RFC 4291)
+
             let address = IPv6.Address(0xfe80, 0, 0, 0, 0x0200, 0x5eff, 0xfe00, 0x0001)
 
-            // Check properties (RFC 4291)
             #expect(address.is.linkLocal == true)
 
-            // Canonical text (RFC 5952)
             let canonical = String(address)
             #expect(canonical == "fe80::200:5eff:fe00:1")
 
-            // Scoped address (RFC 4007)
             let scoped = RFC_4007.IPv6.ScopedAddress(address: address, zone: "eth0")
             #expect(scoped.requiresZone == true)
             #expect(scoped.isProperlyScoped == true)
