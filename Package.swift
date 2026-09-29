@@ -50,7 +50,15 @@ let package = Package(
         .testTarget(
             name: "IPv6 Standard Tests",
             dependencies: [
-                "IPv6 Standard"
+                "IPv6 Standard",
+                .product(
+                    name: "RFC 4291",
+                    package: "swift-rfc-4291"
+                ),
+                .product(
+                    name: "RFC 4007",
+                    package: "swift-rfc-4007"
+                ),
             ]
         ),
     ],
