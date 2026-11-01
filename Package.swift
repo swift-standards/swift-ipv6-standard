@@ -19,7 +19,8 @@ let package = Package(
     dependencies: [
         .package(
             url: "https://github.com/swift-ietf/swift-rfc-4291.git",
-            branch: "main"
+            branch: "main",
+            traits: ["Coder"]
         ),
         .package(
             url: "https://github.com/swift-ietf/swift-rfc-5952.git",
