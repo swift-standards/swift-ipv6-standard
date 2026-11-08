@@ -1,6 +1,6 @@
-public import RFC_4007
+import RFC_4007
 public import RFC_4291
-public import RFC_5952
+import RFC_5952
 
 public enum IPv6Standard {}
 
