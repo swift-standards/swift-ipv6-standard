@@ -32,9 +32,9 @@ extension `IPv6Standard Tests` {
         @Test
         func `RFC 4007 scopes a link-local address with a zone`() throws {
             let linkLocal = IPv6.Address(0xfe80, 0, 0, 0, 0x0200, 0x5eff, 0xfe00, 0x0001)
-            let scoped = RFC_4007.IPv6.ScopedAddress(address: linkLocal, zone: "eth0")
+            let scoped = RFC_4007.IPv6.ScopedAddress(address: linkLocal, zone: try RFC_4007.IPv6.ScopedAddress.Zone("eth0"))
 
-            #expect(scoped.zone == "eth0")
+            #expect(scoped.zone?.rawValue == "eth0")
             #expect(scoped.requiresZone)
             #expect(scoped.isProperlyScoped)
         }
