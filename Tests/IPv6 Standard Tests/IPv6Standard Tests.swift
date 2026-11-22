@@ -12,7 +12,7 @@ extension `IPv6Standard Tests` {
         @Test
         func `IPv6 names the RFC 4291 address family`() throws {
             let address: IPv6.Address = .loopback
-            #expect(address == RFC_4291.IPv6.Address.loopback)
+            #expect(address == IETF.RFC.`4291`.IPv6.Address.loopback)
             #expect(address.segments.7 == 1)
         }
 
@@ -32,7 +32,7 @@ extension `IPv6Standard Tests` {
         @Test
         func `RFC 4007 scopes a link-local address with a zone`() throws {
             let linkLocal = IPv6.Address(0xfe80, 0, 0, 0, 0x0200, 0x5eff, 0xfe00, 0x0001)
-            let scoped = RFC_4007.IPv6.ScopedAddress(address: linkLocal, zone: try RFC_4007.IPv6.ScopedAddress.Zone("eth0"))
+            let scoped = IETF.RFC.`4007`.IPv6.ScopedAddress(address: linkLocal, zone: try IETF.RFC.`4007`.IPv6.ScopedAddress.Zone("eth0"))
 
             #expect(scoped.zone?.rawValue == "eth0")
             #expect(scoped.requiresZone)
@@ -42,7 +42,7 @@ extension `IPv6Standard Tests` {
         @Test
         func `RFC 4007 leaves a global address unscoped`() throws {
             let global = IPv6.Address(0x2001, 0x0db8, 0, 0, 0, 0, 0, 1)
-            let scoped = RFC_4007.IPv6.ScopedAddress(address: global)
+            let scoped = IETF.RFC.`4007`.IPv6.ScopedAddress(address: global)
 
             #expect(scoped.zone == nil)
             #expect(!scoped.requiresZone)
